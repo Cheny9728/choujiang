@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中船海装风电</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.css">
+</head>
+<body>
+    <canvas id="fireworks" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;"></canvas>
+    <!-- 顶部导航 -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="welcome">欢迎访问中船海装风电股份有限公司官网！</div>
+                <div class="top-right">
+                    <span class="lang-switch">中文 | English</span>
+                    <a href="#" class="oa-login-btn">OA登录</a>
+                </div>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="container">
+                <div class="logo">
+                    <img src="Imgs/logo/logo.png" alt="中船海装">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">网站首页</a></li>
+                    <li><a href="#news">新闻中心</a></li>
+                    <li><a href="#products">产品与服务</a></li>
+                    <li><a href="#tech">前沿技术</a></li>
+                    <li><a href="#investor">投资者关系</a></li>
+                    <li><a href="#about">关于海装</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主轮播图 -->
+    <div class="swiper main-swiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="Imgs/1.jpg" alt="轮播图1">
+                <div class="slide-text">
+                    <h2>智领风电 慧享未来</h2>
+                    <p>打造高质量新能源应用系统集成商</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="Imgs/2.jpg" alt="轮播图2">
+                <div class="slide-text">
+                    <h2>创新引领 科技赋能</h2>
+                    <p>专注风电整机装备研制与服务</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="Imgs/3.jpg" alt="轮播图3">
+                <div class="slide-text">
+                    <h2>海上风电引领者</h2>
+                    <p>打造海上风电整体解决方案</p>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <img src="Imgs/4.jpg" alt="轮播图4">
+                <div class="slide-text">
+                    <h2>智慧运维服务</h2>
+                    <p>全生命周期智能化运维管理</p>
+                </div>
+            </div>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- 快速入口 -->
+    <section class="quick-links">
+        <div class="container">
+            <div class="links-grid">
+                <div class="link-item">
+                    <img src="Imgs/3.jpg" alt="陆上风电">
+                    <h3>陆上风电</h3>
+                </div>
+                <div class="link-item">
+                    <img src="Imgs/4.jpg" alt="海上风电">
+                    <h3>海上风电</h3>
+                </div>
+                <div class="link-item">
+                    <img src="Imgs/5.jpg" alt="海外风电">
+                    <h3>海外风电</h3>
+                </div>
+                <div class="link-item">
+                    <img src="Imgs/6.jpg" alt="智慧运维">
+                    <h3>智慧运维</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 公司简介 -->
+    <section class="company-intro">
+        <div class="container">
+            <div class="intro-content">
+                <h2>公司简介</h2>
+                <p>中船海装风电股份有限公司是中国船舶集团有限公司旗下专业从事风力发电设备研发、制造的高新技术企业。</p>
+                <a href="#" class="more-btn">了解更多</a>
+            </div>
+            <div class="intro-image">
+                <img src="Imgs/7.jpg" alt="公司简介">
+            </div>
+        </div>
+    </section>
+
+    <!-- 新闻中心 -->
+    <section class="news">
+        <div class="container">
+            <div class="section-header">
+                <h2>新闻中心</h2>
+                <a href="#" class="more-link">更多 ></a>
+            </div>
+            <div class="news-grid">
+                <div class="news-main">
+                    <div class="news-item featured">
+                        <img src="Imgs/8.jpg" alt="新闻图片">
+                        <div class="news-content">
+                            <h3>中船海装召开2024年工作会议</h3>
+                            <p class="news-date">2024-01-02</p>
+                            <p class="news-excerpt">12月29日，中船海装召开2024年工作会议...</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-list">
+                    <div class="news-item">
+                        <span class="news-date">2023-12-28</span>
+                        <h3>中船海装召开2023年第四季度安委会</h3>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2023-12-25</span>
+                        <h3>中船海装成功签订海上风电项目合同</h3>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2023-12-20</span>
+                        <h3>我司参加2023风能产业创新发展论坛</h3>
+                    </div>
+                    <div class="news-item">
+                        <span class="news-date">2023-12-15</span>
+                        <h3>中船海装获评"重庆市高新技术企业"称号</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <img src="Imgs/logo.png" alt="中船海装">
+                    <p>中船海装风电股份有限公司</p>
+                    <p>电话：023-67502555</p>
+                    <p>邮箱：market@hzwindpower.com</p>
+                    <p>地址：重庆市两江新区经开园金渝大道30号</p>
+                </div>
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h4>关于海装</h4>
+                        <ul>
+                            <li><a href="#">公司简介</a></li>
+                            <li><a href="#">发展历程</a></li>
+                            <li><a href="#">组织架构</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h4>新闻中心</h4>
+                        <ul>
+                            <li><a href="#">公司新闻</a></li>
+                            <li><a href="#">媒体报道</a></li>
+                            <li><a href="#">专题报道</a></li>
+                        </ul>
+                    </div>
+                    <!-- 更多链接组... -->
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Copyright © 2021 中船海装风电股份有限公司 All Rights Reserved.</p>
+                <p>渝ICP备09011937号-1</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- 登录弹窗 -->
+    <div class="login-modal" id="loginModal">
+        <div class="login-container">
+            <div class="login-header">
+                <h3>OA系统登录</h3>
+                <span class="close-btn">&times;</span>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" name="username" required placeholder="请输入用户名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" name="password" required placeholder="请输入密码">
+                        <span class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="default-accounts">
+                    <p>默认账户：</p>
+                    <ul>
+                        <li>管理员：admin / admin123</li>
+                        <li>普通用户：user / user123</li>
+                        <li>测试账户：test / test123</li>
+                    </ul>
+                </div>
+                <div class="form-group">
+                    <button type="submit">登录</button>
+                </div>
+                <div class="form-footer">
+                    <a href="#" class="forgot-password">忘记密码？</a>
+                    <a href="#" class="register-link">注册账号</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 注册弹窗 -->
+    <div class="register-modal" id="registerModal">
+        <div class="register-container">
+            <div class="register-header">
+                <h3>账号注册</h3>
+                <span class="close-btn">&times;</span>
+            </div>
+            <form id="registerForm" class="register-form">
+                <div class="form-group">
+                    <label for="regUsername">用户名</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="regUsername" name="username" required placeholder="请设置用户名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">邮箱</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="regEmail" name="email" required placeholder="请输入邮箱">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">密码</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="regPassword" name="password" required placeholder="请设置密码">
+                        <span class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">确认密码</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="请再次输入密码">
+                        <span class="password-toggle">
+                            <i class="fas fa-eye"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit">注册</button>
+                </div>
+                <div class="form-footer">
+                    <span>已有账号？</span>
+                    <a href="#" class="login-link">立即登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

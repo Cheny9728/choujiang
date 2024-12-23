@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中船海装OA系统</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=您的百度地图密钥"></script>
+</head>
+<body>
+    <!-- 添加烟花特效画布 -->
+    <canvas id="fireworks" style="position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999;"></canvas>
+    
+    <div class="app-container">
+        <!-- 侧边栏 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../Imgs/logo/logo.png" alt="中船海装">
+                <h3>OA办公系统</h3>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="#dashboard">
+                            <i class="fas fa-home"></i>
+                            <span data-i18n="dashboard">工作台</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#workflow"><i class="fas fa-tasks"></i>工作流程</a>
+                        <ul class="sub-menu">
+                            <li><a href="#approval">待办审批</a></li>
+                            <li><a href="#processed">已办事项</a></li>
+                            <li><a href="#initiated">我发起的</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#document"><i class="fas fa-file-alt"></i>公文管理</a>
+                        <ul class="sub-menu">
+                            <li><a href="#incoming">收文管理</a></li>
+                            <li><a href="#outgoing">发文管理</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#attendance"><i class="fas fa-clock"></i>考勤管理</a>
+                    </li>
+                    <li>
+                        <a href="#calendar"><i class="fas fa-calendar-alt"></i>日程安排</a>
+                    </li>
+                    <li>
+                        <a href="#contacts"><i class="fas fa-address-book"></i>通讯录</a>
+                    </li>
+                    <li>
+                        <a href="#salary"><i class="fas fa-money-check-alt"></i>工资管理</a>
+                        <ul class="sub-menu">
+                            <li><a href="#salary-query">工资条查询</a></li>
+                            <li><a href="#salary-stats">薪资统计</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 顶部栏 -->
+            <header class="top-bar">
+                <nav class="navbar">
+                    <div class="nav-left">
+                        <button class="toggle-sidebar">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <span class="system-title">OA办公系统</span>
+                        <a href="../index.html" class="back-home">
+                            <i class="fas fa-home"></i>
+                            返回主页
+                        </a>
+                    </div>
+                    <div class="nav-right">
+                        <div class="language-switch">
+                            <button class="lang-btn" data-lang="zh">中文</button>
+                            <span>/</span>
+                            <button class="lang-btn" data-lang="en">English</button>
+                        </div>
+                        <div class="notifications">
+                            <i class="fas fa-bell"></i>
+                            <span class="badge">3</span>
+                            <div class="notifications-dropdown">
+                                <div class="notification-header">
+                                    <h4>消息通知</h4>
+                                    <button class="mark-all-read">全部已读</button>
+                                </div>
+                                <div class="notification-list">
+                                    <div class="notification-item unread">
+                                        <i class="fas fa-file-alt"></i>
+                                        <div class="notification-content">
+                                            <p>您有一个新的公文需要审批</p>
+                                            <span class="notification-time">10分钟前</span>
+                                        </div>
+                                    </div>
+                                    <div class="notification-item unread">
+                                        <i class="fas fa-calendar-check"></i>
+                                        <div class="notification-content">
+                                            <p>下午3点有部门会议</p>
+                                            <span class="notification-time">30分钟前</span>
+                                        </div>
+                                    </div>
+                                    <div class="notification-item">
+                                        <i class="fas fa-tasks"></i>
+                                        <div class="notification-content">
+                                            <p>您的请假申请已审批通过</p>
+                                            <span class="notification-time">2小时前</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notification-footer">
+                                    <a href="#all-notifications">查看全部</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-info">
+                            <img src="../Imgs/10.jpg" alt="用户头像" class="avatar">
+                            <span class="username">张三</span>
+                            <i class="fas fa-chevron-down"></i>
+                            <div class="dropdown-menu">
+                                <a href="#profile"><i class="fas fa-user"></i>个人信息</a>
+                                <a href="#settings"><i class="fas fa-cog"></i>系统设置</a>
+                                <a href="#" class="logout-btn"><i class="fas fa-sign-out-alt"></i>退出登录</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- 工作台内容 -->
+            <div class="dashboard">
+                <!-- 快捷操作区 -->
+                <div class="quick-actions">
+                    <div class="action-card">
+                        <i class="fas fa-file-signature"></i>
+                        <h4>发起审批</h4>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-clock"></i>
+                        <h4>考勤打卡</h4>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h4>日程安排</h4>
+                    </div>
+                    <div class="action-card">
+                        <i class="fas fa-envelope"></i>
+                        <h4>发送邮件</h4>
+                    </div>
+                </div>
+
+                <!-- 待办事项 -->
+                <div class="todo-section">
+                    <h3>待办事项</h3>
+                    <div class="todo-carousel">
+                        <button class="carousel-btn prev">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="todo-list">
+                            <div class="todo-item active">
+                                <div class="todo-content">
+                                    <h4>设备采购审批</h4>
+                                    <p>需要审批新备采购申请</p>
+                                    <span class="time">2024-01-15 10:30</span>
+                                </div>
+                                <div class="todo-actions">
+                                    <button class="btn-approve">审批</button>
+                                </div>
+                            </div>
+                            <div class="todo-item">
+                                <div class="todo-content">
+                                    <h4>员工培训计划审核</h4>
+                                    <p>2024年第一季度员工培训计划待审核</p>
+                                    <span class="time">2024-01-15 09:15</span>
+                                </div>
+                                <div class="todo-actions">
+                                    <button class="btn-approve">审批</button>
+                                </div>
+                            </div>
+                            <div class="todo-item">
+                                <div class="todo-content">
+                                    <h4>���目进度报告</h4>
+                                    <p>海上风电��目月度进度报告待审</p>
+                                    <span class="time">2024-01-14 16:45</span>
+                                </div>
+                                <div class="todo-actions">
+                                    <button class="btn-approve">审批</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="carousel-btn next">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="carousel-dots">
+                        <span class="dot active"></span>
+                        <span class="dot"></span>
+                        <span class="dot"></span>
+                    </div>
+                </div>
+
+                <!-- 公告栏 -->
+                <div class="announcements">
+                    <h3>公司公告</h3>
+                    <div class="announcement-list">
+                        <div class="announcement-item">
+                            <h4>关于春节放假安排的通知</h4>
+                            <p>根据国务院办公厅通知，结合公司实际情况，现将2024年春节放假安排通知如下...</p>
+                            <span class="time">2024-01-10</span>
+                        </div>
+                        <div class="announcement-item">
+                            <h4>2024年度工作会议通知</h4>
+                            <p>定于2024年1月20日在公司多功能会议室召开年度工作会议，请各部门做好准备...</p>
+                            <span class="time">2024-01-08</span>
+                        </div>
+                        <div class="announcement-item">
+                            <h4>关于开展安全生产月活动的通知</h4>
+                            <p>为进一步加强公司安全生产管理，提高全员安全意识，定于本月开展安全生产月活动...</p>
+                            <span class="time">2024-01-05</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 工作统计卡片 -->
+                <div class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stats-card">
+                            <i class="fas fa-tasks"></i>
+                            <div class="stats-info">
+                                <h4>待办事项</h4>
+                                <p>12</p>
+                            </div>
+                        </div>
+                        <div class="stats-card">
+                            <i class="fas fa-check-circle"></i>
+                            <div class="stats-info">
+                                <h4>已办事项</h4>
+                                <p>45</p>
+                            </div>
+                        </div>
+                        <div class="stats-card">
+                            <i class="fas fa-clock"></i>
+                            <div class="stats-info">
+                                <h4>本月考勤</h4>
+                                <p>正常</p>
+                            </div>
+                        </div>
+                        <div class="stats-card">
+                            <i class="fas fa-calendar-check"></i>
+                            <div class="stats-info">
+                                <h4>待开会议</h4>
+                                <p>3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 在 dashboard 区域添加地图模块 -->
+                <div class="map-section">
+                    <h3>公司位置</h3>
+                    <div class="map-container">
+                        <div id="companyMap"></div>
+                        <div class="location-info">
+                            <div class="info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>地址：重庆市江北区金融城2号T3栋</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-phone"></i>
+                                <span>电话：023-12345678</span>
+                            </div>
+                            <div class="info-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>邮箱���contact@example.com</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 在 body 末尾添加工资条查询弹窗 -->
+    <div class="salary-modal" id="salaryModal">
+        <div class="salary-container">
+            <div class="modal-header">
+                <h3>工资条查询</h3>
+                <div class="modal-actions">
+                    <button class="switch-modal" data-target="salaryStatsModal">
+                        <i class="fas fa-chart-bar"></i>
+                        切换到薪酬统计
+                    </button>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
+            <div class="salary-search">
+                <div class="search-form">
+                    <select id="salaryYear">
+                        <option value="2024">2024年</option>
+                        <option value="2023">2023年</option>
+                    </select>
+                    <select id="salaryMonth">
+                        <option value="1">1月</option>
+                        <option value="2">2月</option>
+                        <option value="3">3月</option>
+                        <option value="4">4月</option>
+                        <option value="5">5月</option>
+                        <option value="6">6月</option>
+                        <option value="7">7月</option>
+                        <option value="8">8月</option>
+                        <option value="9">9月</option>
+                        <option value="10">10月</option>
+                        <option value="11">11月</option>
+                        <option value="12">12月</option>
+                    </select>
+                    <button class="search-btn">查询</button>
+                </div>
+            </div>
+            <div class="salary-details">
+                <!-- 工资条内容会通过 JavaScript 动态插入到这里 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 在 body 末尾添加薪酬统计弹窗 -->
+    <div class="salary-modal" id="salaryStatsModal">
+        <div class="salary-container">
+            <div class="modal-header">
+                <h3>薪酬统计</h3>
+                <div class="modal-actions">
+                    <button class="switch-modal" data-target="salaryModal">
+                        <i class="fas fa-search"></i>
+                        切换到工资查询
+                    </button>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
+            <div class="stats-content">
+                <div class="stats-filters">
+                    <select id="statsYear">
+                        <option value="2024">2024年</option>
+                        <option value="2023">2023年</option>
+                    </select>
+                    <button class="search-btn">查询</button>
+                </div>
+                <div class="stats-table">
+                    <!-- 月度工资表格将在这里显示 -->
+                </div>
+                <div class="stats-summary">
+                    <div class="summary-item">
+                        <h4>年度总收入</h4>
+                        <p class="total-income">¥0.00</p>
+                    </div>
+                    <div class="summary-item">
+                        <h4>平均月收入</h4>
+                        <p class="avg-income">¥0.00</p>
+                    </div>
+                    <div class="summary-item">
+                        <h4>最高月收入</h4>
+                        <p class="max-income">¥0.00</p>
+                    </div>
+                    <div class="summary-item">
+                        <h4>最低月收入</h4>
+                        <p class="min-income">¥0.00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 在 body 末尾添加公文管理弹窗 -->
+    <div class="document-modal" id="documentModal">
+        <div class="document-container">
+            <div class="modal-header">
+                <h3>公文管理</h3>
+                <div class="modal-actions">
+                    <button class="btn-new-doc">
+                        <i class="fas fa-plus"></i>
+                        新建公文
+                    </button>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
+            <div class="document-tabs">
+                <button class="tab-btn active" data-tab="incoming">收文管理</button>
+                <button class="tab-btn" data-tab="outgoing">发文管理</button>
+            </div>
+            <div class="document-content">
+                <div class="doc-filters">
+                    <div class="filter-group">
+                        <input type="text" placeholder="搜索文号/标题" class="doc-search">
+                        <select class="doc-status">
+                            <option value="">全部状态</option>
+                            <option value="pending">待处理</option>
+                            <option value="processing">处理中</option>
+                            <option value="completed">已完成</option>
+                        </select>
+                        <button class="btn-search">搜索</button>
+                    </div>
+                    <div class="date-range">
+                        <input type="date" class="date-start">
+                        <span>至</span>
+                        <input type="date" class="date-end">
+                    </div>
+                </div>
+                <div class="document-list">
+                    <!-- 文档列表将通过 JavaScript 动态��成 -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 公文详情弹窗 -->
+    <div class="document-detail-modal" id="documentDetailModal">
+        <div class="document-detail-container">
+            <div class="modal-header">
+                <h3>公文详情</h3>
+                <div class="modal-actions">
+                    <button class="btn-print-doc">
+                        <i class="fas fa-print"></i>
+                        打印
+                    </button>
+                    <button class="btn-download-doc">
+                        <i class="fas fa-download"></i>
+                        下载
+                    </button>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
+            <div class="document-detail-content">
+                <div class="doc-header">
+                    <div class="doc-title">
+                        <h2>关于xxxx的通知</h2>
+                        <span class="doc-number">发文字号：[2024]001号</span>
+                    </div>
+                    <div class="doc-meta">
+                        <span>发文单位：办公室</span>
+                        <span>发文日期：2024-01-15</span>
+                        <span>密级：普通</span>
+                    </div>
+                </div>
+                <div class="doc-body">
+                    <!-- 公文正文内容 -->
+                </div>
+                <div class="doc-footer">
+                    <div class="doc-attachments">
+                        <h4>附件：</h4>
+                        <ul class="attachment-list">
+                            <!-- 附件列表 -->
+                        </ul>
+                    </div>
+                    <div class="doc-signatures">
+                        <div class="signature-item">
+                            <span>拟稿人：张三</span>
+                            <span>2024-01-14</span>
+                        </div>
+                        <div class="signature-item">
+                            <span>审核人：李四</span>
+                            <span>2024-01-15</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 新建公文弹窗 -->
+    <div class="document-edit-modal" id="documentEditModal">
+        <div class="document-edit-container">
+            <div class="modal-header">
+                <h3>新建公文</h3>
+                <div class="modal-actions">
+                    <button class="btn-save-doc">
+                        <i class="fas fa-save"></i>
+                        保存
+                    </button>
+                    <span class="close-btn">&times;</span>
+                </div>
+            </div>
+            <div class="document-edit-content">
+                <div class="doc-form">
+                    <div class="form-group">
+                        <label>公文标题</label>
+                        <input type="text" class="doc-title-input" placeholder="请输入公文标题">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>发文字号</label>
+                            <input type="text" class="doc-number-input" placeholder="[2024]001号">
+                        </div>
+                        <div class="form-group">
+                            <label>密级</label>
+                            <select class="doc-security">
+                                <option value="普通">普通</option>
+                                <option value="秘密">秘密</option>
+                                <option value="机密">机密</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>发文单位</label>
+                            <input type="text" class="doc-department" value="办公室">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>正文内容</label>
+                        <div class="editor-toolbar">
+                            <button data-command="bold"><i class="fas fa-bold"></i></button>
+                            <button data-command="italic"><i class="fas fa-italic"></i></button>
+                            <button data-command="underline"><i class="fas fa-underline"></i></button>
+                            <button data-command="insertOrderedList"><i class="fas fa-list-ol"></i></button>
+                            <button data-command="insertUnorderedList"><i class="fas fa-list-ul"></i></button>
+                            <button data-command="justifyLeft"><i class="fas fa-align-left"></i></button>
+                            <button data-command="justifyCenter"><i class="fas fa-align-center"></i></button>
+                            <button data-command="justifyRight"><i class="fas fa-align-right"></i></button>
+                        </div>
+                        <div class="doc-editor" contenteditable="true"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>附件</label>
+                        <div class="attachment-upload">
+                            <input type="file" id="docAttachment" multiple>
+                            <label for="docAttachment" class="upload-btn">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                选择文件
+                            </label>
+                            <div class="attachment-list">
+                                <!-- 上传的附件将显示在这里 -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>拟稿人</label>
+                            <input type="text" class="doc-author" value="张三" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>审核人</label>
+                            <select class="doc-reviewer">
+                                <option value="李四">李四</option>
+                                <option value="王五">王五</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <!-- 在 body 结束标签前添加 SheetJS 库 -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</body>
+</html> 

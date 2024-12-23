@@ -1,0 +1,692 @@
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* 顶部栏样式 */
+.top-bar {
+    background: #f5f5f5;
+    padding: 8px 0;
+    font-size: 14px;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lang-switch {
+    cursor: pointer;
+}
+
+/* 导航栏样式 */
+.main-nav {
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.main-nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #0066cc;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* 轮播图样式增强 */
+.main-swiper {
+    height: calc(100vh - 110px);
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper-slide {
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.swiper-slide-active img {
+    transform: scale(1.1);
+}
+
+.slide-text {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    z-index: 1;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.slide-text h2 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
+}
+
+.slide-text p {
+    font-size: 24px;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s;
+}
+
+.swiper-slide-active .slide-text h2,
+.swiper-slide-active .slide-text p {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* 添加渐变遮罩 */
+.swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.5) 0%,
+        rgba(0,0,0,0.3) 50%,
+        rgba(0,0,0,0.1) 100%
+    );
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.swiper-slide-active::after {
+    opacity: 1;
+}
+
+/* 轮播控制按钮样式 */
+.swiper-button-prev,
+.swiper-button-next {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+    background: rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+/* 修改箭头颜色和大小 */
+.swiper-button-prev:after,
+.swiper-button-next:after {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+/* 分页器样式���化 */
+.swiper-pagination {
+    bottom: 30px !important;
+}
+
+.swiper-pagination-bullet {
+    width: 30px;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, 0.4);
+    transition: all 0.3s ease;
+    opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+    width: 50px;
+    background: #fff;
+    opacity: 1;
+}
+
+/* 添加轮播图遮罩渐变 */
+.swiper-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0,0,0,0.4) 0%,
+        rgba(0,0,0,0.2) 50%,
+        rgba(0,0,0,0.1) 100%
+    );
+    pointer-events: none;
+}
+
+/* 轮播图文字样式优化 */
+.slide-text {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    color: #fff;
+    z-index: 1;
+}
+
+.slide-text h2 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.slide-text p {
+    font-size: 24px;
+    max-width: 600px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* 快速样式 */
+.quick-links {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.links-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.link-item {
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.link-item:hover {
+    transform: translateY(-10px);
+}
+
+.link-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.link-item h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+/* 公司简介样式 */
+.company-intro {
+    padding: 80px 0;
+    background: #f5f5f5;
+}
+
+.intro-content {
+    max-width: 600px;
+}
+
+.intro-content h2 {
+    font-size: 36px;
+    color: #0066cc;
+    margin-bottom: 30px;
+}
+
+.intro-content p {
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.more-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #0066cc;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+.more-btn:hover {
+    background: #0052a3;
+}
+
+/* 新闻中心样式 */
+.news {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.section-header h2 {
+    font-size: 36px;
+    color: #333;
+}
+
+.more-link {
+    color: #666;
+    text-decoration: none;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+}
+
+.news-item.featured {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.news-item.featured img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.news-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: #fff;
+}
+
+.news-list .news-item {
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.news-date {
+    color: #999;
+    font-size: 14px;
+}
+
+/* 页脚样式 */
+footer {
+    background: #333;
+    color: #fff;
+    padding: 60px 0 30px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 50px;
+}
+
+.footer-info img {
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.footer-info p {
+    margin-bottom: 10px;
+    color: #999;
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+}
+
+.link-group h4 {
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.link-group ul {
+    list-style: none;
+}
+
+.link-group a {
+    color: #999;
+    text-decoration: none;
+    line-height: 2;
+}
+
+.link-group a:hover {
+    color: #fff;
+}
+
+.copyright {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    text-align: center;
+    color: #999;
+}
+
+/* 响应式设计 */
+@media (max-width: 1024px) {
+    .links-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .slide-text h2 {
+        font-size: 32px;
+    }
+    
+    .slide-text p {
+        font-size: 18px;
+    }
+} 
+
+/* 顶部栏样式调整 */
+.top-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.oa-login-btn {
+    color: #333;
+    text-decoration: none;
+    padding: 2px 10px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.oa-login-btn:hover {
+    background: #0066cc;
+    color: white;
+    border-color: #0066cc;
+}
+
+/* 登录和注册弹窗基础样式 */
+.login-modal,
+.register-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px);
+}
+
+.login-container,
+.register-container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    position: relative;
+    animation: modalShow 0.3s ease;
+}
+
+@keyframes modalShow {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header,
+.register-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.login-header h3,
+.register-header h3 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 600;
+}
+
+.close-btn {
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    color: #333;
+    transform: rotate(90deg);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border: 2px solid #e1e1e1;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+}
+
+.input-with-icon input:focus {
+    border-color: #0066cc;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,102,204,0.1);
+}
+
+.input-with-icon i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    font-size: 16px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #666;
+}
+
+.form-group button {
+    width: 100%;
+    padding: 12px;
+    background: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.form-group button:hover {
+    background: #0052a3;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,102,204,0.2);
+}
+
+.form-footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.form-footer a {
+    color: #0066cc;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: color 0.3s ease;
+}
+
+.form-footer a:hover {
+    color: #0052a3;
+    text-decoration: underline;
+}
+
+.error-message {
+    color: #ff4444;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none;
+}
+
+.form-group.error .error-message {
+    display: block;
+}
+
+.form-group.error input {
+    border-color: #ff4444;
+}
+
+/* 默认账户提示样式 */
+.default-accounts {
+    margin: 15px 0;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.default-accounts p {
+    color: #666;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.default-accounts ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.default-accounts li {
+    color: #666;
+    margin: 3px 0;
+    font-family: monospace;
+}
+
+.default-accounts li:before {
+    content: '→';
+    margin-right: 5px;
+    color: #0066cc;
+} 
